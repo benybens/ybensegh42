@@ -13,6 +13,7 @@ int	main(int argc , char *argv[])
 	char	dst[] = "Destination Target"; 
 	char	src2[] = "Source Acquisition"; 
 	char	dst2[] = "Destination Target";
+	char 	mem[] = "54542157215245847";
 	char	catdst[100] = "This is now";
 	char	catsrc[100] = " a concatened string, and this part should not appear";
 
@@ -128,4 +129,44 @@ int	main(int argc , char *argv[])
 	printf("0 : %d\n",ft_atoi("0"));
 	printf("INT_MAX : %d\n",ft_atoi("2147483647"));
 	printf("INT_MIN : %d\n",ft_atoi("-2147483648"));
+	
+	printf("\n----------\n---- ft_memset :\n-----------\n");
+	printf("mem :  %s\n",mem);
+	printf("memset 15 chars : %s\n",(char *)ft_memset(mem,'x',15));
+	
+	printf("\n----------\n---- ft_bzero :\n-----------\n");
+	printf("mem :  %s\n",mem);
+	printf("bzero 15 chars ...\n");
+	ft_bzero(mem,15);
+	printf("membzero :  %s\n",mem);
+	
+	printf("\n----------\n---- ft_memcpy :\n-----------\n");
+	printf("mem :  %s\n",mem);
+	ft_memcpy(mem,"abcdefghijklmnopqrstuvwxyz",5);
+	printf("mem 5 chars:  %s\n",mem);
+	ft_bzero(mem,15);
+	printf("mem :  %s\n",mem);
+	ft_memcpy(mem,"abcdefghijklmnopqrstuvwxyz",10);
+	printf("mem 10 chars :  %s\n",mem);	
+
+	printf("\n----------\n---- ft_memccpy :\n-----------\n");
+	printf("mem :  %s\n",mem);
+	ft_memccpy(mem,"abcdefghijklmnopqrstuvwxyz",'m',10);
+	printf("mem 10 chars up to 'm':  %s\n",mem);
+	printf("ft_memcpy return :  %s\n",(char *)ft_memccpy(mem,"abcdefghijklmnopqrstuvwxyz",'m',10));
+	ft_bzero(mem,15);
+	printf("mem :  %s\n",mem);
+	ft_memccpy(mem,"abcdefghijklmnopqrstuvwxyz",'m',26);
+	printf("mem cpy 26 chars up to 'm' :  %s\n",mem);
+	printf("ft_memcpy return :  %s\n",(char *)ft_memccpy(mem,"abcdefghijklmnopqrstuvwxyz",'m',26));
+	ft_bzero(mem,15);
+	
+	printf("\n----------\n---- ft_memmove :\n-----------\n");
+	ft_memmove(mem,str,8);
+	printf("mem move 8:  %s\n",mem);
+	
+	printf("\n----------\n---- ft_memchr :\n-----------\n");
+	printf("mem chr in 8 , k :  %s\n",(char *)ft_memchr(mem,'k',8));
+	printf("mem chr in 8 , l :  %s\n",(char *)ft_memchr(mem,'l',8));
+	printf("mem chr in 2 , l :  %s\n",(char *)ft_memchr(mem,'l',2));
 }
