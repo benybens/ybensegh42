@@ -197,9 +197,13 @@ int	main(int argc , char *argv[])
 		i++;	
 	}
 
-
 	printf("\n----------\n---- ft_strdup :\n-----------\n");
 	printf("to be copied 'HelloWorld'\n");
 	printf("%s\n", ft_strdup("HelloWorld"));
+
+
+	printf("\n----------\n---- ft_substr :\n-----------\n");
+	printf("HelloWorld but only World : %s\n",ft_substr("HelloWorld",5,5));
+	printf("HelloWorld but only Wor : %s\n",ft_substr("HelloWorld",5,3));
 
 }
