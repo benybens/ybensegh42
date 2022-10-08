@@ -177,4 +177,29 @@ int	main(int argc , char *argv[])
 	printf("libc 'Hello' 'Hemlo' 5 ? %d \n",memcmp("Hello","Hemlo",5));
 	printf("ft 'Hello' 'Hemlo' 2 ? %d \n",ft_memcmp("Hello","Hemlo",2));
 	printf("libc 'Hello' 'Hemlo' 2 ? %d \n",memcmp("Hello","Hemlo",2));
+	
+	
+	int *calloc1;
+	int *calloc2;
+	int i = 0;
+	printf("\n----------\n---- ft_calloc :\n-----------\n");
+	calloc1 = ft_calloc(10,sizeof(int));
+	calloc2 = calloc(10,sizeof(int));
+	while( i < 10)
+	{
+		printf("ft calloc %d\n",calloc1[i]);
+		i++;
+	}
+	i = 0;
+	while( i < 10)
+	{
+		printf("calloc %d\n",calloc2[i]);
+		i++;	
+	}
+
+
+	printf("\n----------\n---- ft_strdup :\n-----------\n");
+	printf("to be copied 'HelloWorld'\n");
+	printf("%s\n", ft_strdup("HelloWorld"));
+
 }
