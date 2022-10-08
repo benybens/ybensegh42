@@ -20,7 +20,7 @@ int	main(int argc , char *argv[])
 	printf("\n********\n**** Starting test of libft.a : \n********\n");
 
 	printf("\n----------\n---- ft_strlen :\n-----------\n");
-	printf("This string : %s , count %d chars\n",str,ft_strlen(str));
+	printf("This string : %s , count %d chars\n",str,(int)ft_strlen(str));
 	
 	printf("\n----------\n---- ft_isalpha :\n-----------\n");
 	printf("O is alpha ? %d \n",ft_isalpha('o'));
@@ -105,15 +105,15 @@ int	main(int argc , char *argv[])
 
 	printf("\n----------\n---- ft_strlcpy :\n-----------\n");
 	printf("This is dest : %s\n",dst);
-	printf("6 charcters copied to dst ? src is %d bytes \n",ft_strlcpy(dst,src,6));
+	printf("6 charcters copied to dst ? src is %d bytes \n",(int)ft_strlcpy(dst,src,6));
 	printf("This is dest : %s\n",dst);
 	printf("This is dest2 : %s\n",dst2);
-	printf("10 characters copied to dst ? src is %d bytes\n",ft_strlcpy(dst2,src2,10));
+	printf("10 characters copied to dst ? src is %d bytes\n",(int)ft_strlcpy(dst2,src2,10));
 	printf("This is dest2 : %s\n",dst2);
 	
 	printf("\n----------\n---- ft_strlcat :\n-----------\n");
 	printf("This is dest : %s\n",catdst);
-	printf("20 charcters copied to dst ? src is %d bytes \n",ft_strlcat(catdst,catsrc,20));
+	printf("20 charcters copied to dst ? src is %d bytes \n",(int)ft_strlcat(catdst,catsrc,20));
 	printf("This is dest : %s\n",catdst);
 	
 	printf("\n----------\n---- ft_strnstr :\n-----------\n");
@@ -169,4 +169,12 @@ int	main(int argc , char *argv[])
 	printf("mem chr in 8 , k :  %s\n",(char *)ft_memchr(mem,'k',8));
 	printf("mem chr in 8 , l :  %s\n",(char *)ft_memchr(mem,'l',8));
 	printf("mem chr in 2 , l :  %s\n",(char *)ft_memchr(mem,'l',2));
+	
+	printf("\n----------\n---- ft_memcmp :\n-----------\n");
+	printf("ft 'Hello' 'Hello' 5 ? %d \n",ft_memcmp("Hello","Hello",5));
+	printf("libc 'Hello' 'Hello' 5 ? %d \n",memcmp("Hello","Hello",5));
+	printf("ft 'Hello' 'Hemlo' 5 ? %d \n",ft_memcmp("Hello","Hemlo",5));
+	printf("libc 'Hello' 'Hemlo' 5 ? %d \n",memcmp("Hello","Hemlo",5));
+	printf("ft 'Hello' 'Hemlo' 2 ? %d \n",ft_memcmp("Hello","Hemlo",2));
+	printf("libc 'Hello' 'Hemlo' 2 ? %d \n",memcmp("Hello","Hemlo",2));
 }

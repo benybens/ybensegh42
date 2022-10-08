@@ -1,7 +1,7 @@
 
 #include "../includes/libft.h"
 
-int ft_memcmp(const void *s1, sont void *s2, size_t n)
+int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned int i;
 
@@ -14,7 +14,7 @@ int ft_memcmp(const void *s1, sont void *s2, size_t n)
 	while(i < n)
 	{
 		if(s1c[i] != s2c[i])
-			return (s2c[i] - s1c[i]);
+			return (s1c[i] - s2c[i]);
 		i++;
 	}
 	return (0);
