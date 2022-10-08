@@ -3,3 +3,4 @@ Session.vim
 .*.c.swp
 *.o
 *.exe
+*.a
