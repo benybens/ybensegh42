@@ -206,4 +206,19 @@ int	main(int argc , char *argv[])
 	printf("HelloWorld but only World : %s\n",ft_substr("HelloWorld",5,5));
 	printf("HelloWorld but only Wor : %s\n",ft_substr("HelloWorld",5,3));
 
-}
+	printf("\n----------\n---- ft_strjoin :\n-----------\n");
+	printf("One ring to rule them all + ,One ring to find them : %s\n",ft_strjoin("One ring to rule them all",", One ring to find them."));
+
+	printf("\n----------\n---- ft_strtrim :\n-----------\n");
+	printf("----hey man this string need to be trimmed----- : %s\n",ft_strtrim("----hey man this string need to be trimmed-----","-"));
+	printf("---  +-*/ ** -hey man this string need to be trimmed but this * and this / should not be removed-** - //--- : %s\n", ft_strtrim("---  +-*/ ** -hey man this string need to be trimmed but this * and this / should not be removed--** - //---","+-* /"));
+	
+	printf("\n----------\n---- ft_split :\n-----------\n");
+	printf("yassine,kieran,melissa: \n");
+	char	**split;
+	split = ft_split("yassine,kieran,melissa",',');
+	printf("%s\n",split[0]);
+	printf("%s\n",split[1]);
+	printf("%s\n",split[2]);
+
+	}
