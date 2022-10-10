@@ -3,6 +3,13 @@
 #include <limits.h>
 #include "./includes/libft.h"
 
+char	dummychar(unsigned int i, char c)
+{
+	(void) i;
+
+	return (ft_toupper(c));
+}
+
 int	main(int argc , char *argv[])
 {
 	(void) argc;
@@ -221,4 +228,15 @@ int	main(int argc , char *argv[])
 	printf("%s\n",split[1]);
 	printf("%s\n",split[2]);
 
-	}
+	printf("\n----------\n---- ft_itoa :\n-----------\n");
+	printf("123 itoa : %s\n",ft_itoa(123));
+	printf("578694 itoa : %s\n",ft_itoa(578694));
+	printf("-32123 itoa : %s\n",ft_itoa(-32123));
+	printf("INT_MAX : %s\n",ft_itoa(2147483647));
+	printf("INT_MIN : %s\n",ft_itoa(-2147483648));
+	printf("0 itoa : %s\n",ft_itoa(0));
+	
+	printf("\n----------\n---- ft_strmapi :\n-----------\n");
+	printf("'abcd' with ft_upper : %s\n",ft_strmapi("abcd",dummychar));
+	
+}
