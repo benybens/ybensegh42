@@ -1,7 +1,9 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include <limits.h>
+#include <unistd.h>
 #include <stdio.h> //toremove after test
 
 size_t	ft_strlen(const char *s);
@@ -35,4 +37,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int nb);
 char	*ft_strrev(char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);

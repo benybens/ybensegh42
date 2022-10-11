@@ -7,7 +7,8 @@ SRCS  = ${addprefix ${SRCSDIR},ft_isalpha.c  ft_strlen.c ft_isdigit.c ft_isalnum
 SRCS  += ${addprefix ${SRCSDIR}, ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c}
 SRCS  += ${addprefix ${SRCSDIR}, ft_memcmp.c ft_calloc.c ft_strdup.c ft_substr.c}
 SRCS  += ${addprefix ${SRCSDIR}, ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c}
-SRCS  += ${addprefix ${SRCSDIR}, ft_strrev.c ft_strmapi.c}
+SRCS  += ${addprefix ${SRCSDIR}, ft_strrev.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c}
+SRCS  += ${addprefix ${SRCSDIR}, ft_putendl_fd.c ft_putnbr_fd.c}
 OBJS = ${SRCS:.c=.o}
 
 .c.o:

@@ -238,5 +238,38 @@ int	main(int argc , char *argv[])
 	
 	printf("\n----------\n---- ft_strmapi :\n-----------\n");
 	printf("'abcd' with ft_upper : %s\n",ft_strmapi("abcd",dummychar));
+
+	printf("\n----------\n---- Opening file libft_file_test ...\n-----------\n");
+	int fd;
+
+
+	fd = open("./libft_file_test",O_CREAT|O_RDWR);
+	printf("\n----------\n---- ft_putchar_fd :\n-----------\n");
+	printf("Writing 'a' in libft_file_test ... \n");
+	ft_putchar_fd('a',fd);
+
+
+	printf("\n----------\n---- ft_putstr_fd :\n-----------\n");
+	printf("Writing 'HelloWorld' in libft_file_test ... \n");
+	ft_putstr_fd("HelloWorld",fd);
+
+	
+	printf("\n----------\n---- ft_putendl_fd :\n-----------\n");
+	printf("Writing 'Kawabunga ENDL Check check' in libft_file_test ... \n");
+	ft_putendl_fd("Kawabunga",fd);
+	ft_putendl_fd("Check check",fd);
+
+
+	printf("\n----------\n---- ft_putnbr_fd :\n-----------\n");
+	printf("Writing 42 in libft_file_test ... \n");
+	ft_putnbr_fd(42,fd);
+	ft_putendl_fd("",fd);
+	printf("Writing 0 in libft_file_test ... \n");
+	ft_putnbr_fd(0,fd);
+	ft_putendl_fd("",fd);
+	printf("Writing -45687 in libft_file_test ... \n");
+	ft_putnbr_fd(-45687,fd);
+	ft_putendl_fd("",fd);
+
 	
 }
