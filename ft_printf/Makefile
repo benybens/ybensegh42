@@ -13,7 +13,7 @@ OBJS = ${SRCS:.c=.o}
 
 ${NAME}:	${OBJS} ${LIBFT}
 		ar rcT ${NAME} ${OBJS}
-		ar crsT ${NAME} ${LIBFT}
+		ar rcT ${NAME} ${LIBFT}
 		ranlib ${NAME}
 
 all:	${NAME}
