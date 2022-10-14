@@ -14,7 +14,7 @@ int	print_str(const char *format, int i)
 	start = i;
 	while (format[i] && (format[i] != '%'))
 		i++;
-	str = ft_calloc(i-start, sizeof(char));
+	str = ft_calloc(i-start+1, sizeof(char));
 	ft_strlcpy(str, format + start, i+1-start );
 	ft_putstr_fd(str, 1);
 	free(str);
@@ -100,12 +100,14 @@ int	ft_printf(const char *format, ...)
 	char	*str;
 	int	i;
 	va_list	ap;
+	int len;
 
 	i = 0;
 	va_start(ap, format);
 	str = ft_strdup(format);
+	len = ft_strlen(str);
 //	countarg(format);
-	while (str[i])
+	while (i < len)
 	{	
 		if (str[i] == '%')
 		{
