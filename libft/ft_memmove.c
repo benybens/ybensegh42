@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:28:43 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 18:35:47 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:06:09 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	char	*tmp;
-
 
 	tmp = malloc(sizeof(char *));
 	ft_memcpy(tmp, src, n);

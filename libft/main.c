@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:18:24 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/25 13:20:39 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/10/25 16:10:16 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/25 16:13:03 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int	main(void)
 {
-	unsigned int	i;
-	unsigned int	dstlen;
-
-	if (size == 0)
-		return (ft_strlen(src));
-	i = 0;
-	dstlen = ft_strlen(dst);
-	while (src[i] && (i < size - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-		dst[i] = 0;
-	return (ft_strlen(src));
+	printf("%d\n", ft_strncmp("test\200", "test\0", 6));
+	printf("%d\n", strncmp("test\200", "test\0", 6));
 }

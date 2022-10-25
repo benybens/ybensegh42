@@ -1,7 +1,7 @@
 HEADERDIR = ./
 SRCSDIR = ./
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = libft.a
 SRCS  = ${addprefix ${SRCSDIR}, ft_isalpha.c  ft_strlen.c ft_isdigit.c ft_isalnum.c}
 SRCS  += ${addprefix ${SRCSDIR}, ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c}
@@ -32,6 +32,7 @@ clean:
 	
 fclean:		clean
 		rm -rf ${NAME}
+		rm -rf libft_test
 
 re:		fclean all
 
