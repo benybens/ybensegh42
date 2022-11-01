@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:21:13 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 16:27:37 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 01:10:26 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <unistd.h>
+# include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 int		ft_isalpha(int c);
@@ -33,7 +34,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
-int		ft_atoi(char *nptr);
+int		ft_atoi(const char *nptr);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

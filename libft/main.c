@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:10:16 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/25 16:13:03 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 01:17:01 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@
 
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("test\200", "test\0", 6));
-	printf("%d\n", strncmp("test\200", "test\0", 6));
+	printf("%d\n", ft_atoi("  	 +546:5"));
 }

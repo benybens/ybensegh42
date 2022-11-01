@@ -6,39 +6,44 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:49:01 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/25 16:28:31 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 01:02:26 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
+int	screen(const char *big, const char *little, unsigned int *it)
+{
+	while (little[it[1]])
+	{
+		if (!(big[it[0]++] == little[it[1]++]))
+		{
+			it[1]--;
+			return (0);
+		}
+	}
+	return (1);
+}
+
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	cursor;
+	unsigned int	it[3];
 
-	i = 0;
-	cursor = 0;
+	it[0] = 0;
 	if (little[0] == 0)
-		return ((char*)big);
-	while (big[i] && i < len)
+		return ((char *)big);
+	while (big[it[0]] && it[0] < len)
 	{
-		j = 0;
-		if (big[i] == little[j])
+		it[1] = 0;
+		if (big[it[0]] == little[it[1]++])
 		{
-			cursor = i++;
-			j++;
-			while (little[j])
-			{
-				if (!(big[i++] == little[j++]))
-					break ;
-			}
-			if ((little[j] == 0 || little[j] == ' ') && j == ft_strlen(little) - 1)
-				return ((char *)big + cursor);
-			i = cursor;
+			it[2] = it[0]++;
+			screen(big, little, it);
+			if (!little[it[1]] && (it[0] <= len))
+				return ((char *)big + it[2]);
+			it[0] = it[2];
 		}
-		i++;
+		it[0]++;
 	}
 	return (NULL);
 }
