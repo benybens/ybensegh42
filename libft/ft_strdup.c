@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:14 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 14:21:01 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:14:15 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	len = ft_strlen(s);
-	sdup = calloc(len, sizeof(char));
-	while (i < len)
+	sdup = calloc(len + 1, sizeof(char));
+	while (i < len + 1)
 	{
 		sdup[i] = s[i];
 		i++;

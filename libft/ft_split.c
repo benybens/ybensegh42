@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:22:10 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 16:02:31 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/02 00:09:15 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ char	**ft_split(char const *s, char c)
 		i += wordlen((s + i), c) + 1;
 		j++;
 	}
+	split[j] = NULL;
 	return (split);
 }

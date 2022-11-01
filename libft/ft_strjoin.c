@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:00:54 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 14:15:03 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:29:08 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len_s2 = ft_strlen(s2);
 	i = 0;
 	j = 0;
-	str = calloc(len_s1 + len_s2, sizeof(char));
+	str = calloc(len_s1 + len_s2 + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (s1[i])
@@ -33,10 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[j])
-	{
-		str[i] = s2[j];
-		j++;
-		i++;
-	}
+		str[i++] = s2[j++];
+	str[i] = 0;
 	return (str);
 }

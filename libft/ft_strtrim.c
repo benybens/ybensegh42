@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:57:53 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 16:20:54 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:46:04 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		bounds[2];
 
 	i = 0;
-	isset = 1;
-	str = calloc(ft_strlen(s1), sizeof(char));
+	findset(&isset, &i, s1, set);
+	str = calloc(ft_strlen(s1) + 1, sizeof(char));
 	while (s1[i++] && isset)
 		findset(&isset, &i, s1, set);
 	bounds[0] = --i;
-	isset = 1;
 	i = ft_strlen(s1) - 1;
+	findset(&isset, &i, s1, set);
 	while (s1[i--] && isset)
 		findset(&isset, &i, s1, set);
-	bounds[1] = i;
+	bounds[1] = ++i;
 	ft_strlcpy(str, s1 + bounds[0], bounds[1] - bounds[0] + 2);
 	return (str);
 }
