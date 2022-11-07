@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:23:53 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 13:24:42 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/07 19:11:59 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = ft_strlen(s);
 	while (i >= 0)
 	{
-		if (s[i] == c)
+		if (s[i] == c % 128)
 			return ((char *)s + i);
 		i--;
 	}

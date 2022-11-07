@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:35:11 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/10/24 14:35:47 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/07 19:40:43 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	sc = (char *)s;
 	while (i < n)
 	{
-		if (sc[i] == c)
+		if (sc[i] == c % 128)
 			return (sc + i);
 		i++;
 	}

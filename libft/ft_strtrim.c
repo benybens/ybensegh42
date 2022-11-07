@@ -6,47 +6,29 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:57:53 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/01 23:46:04 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:15:37 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	findset(int *isset, int *i, char const *s1, char const *set)
-{
-	int	j;
-
-	j = 0;
-	while (set[j])
-	{
-		if (s1[*i] == set[j])
-		{
-			*isset = 1;
-			break ;
-		}
-		*isset = 0;
-		j++;
-	}
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	int		i;
-	int		isset;
-	int		bounds[2];
+		char	*trimmed;
+	size_t	start;
+	size_t	end;
 
-	i = 0;
-	findset(&isset, &i, s1, set);
-	str = calloc(ft_strlen(s1) + 1, sizeof(char));
-	while (s1[i++] && isset)
-		findset(&isset, &i, s1, set);
-	bounds[0] = --i;
-	i = ft_strlen(s1) - 1;
-	findset(&isset, &i, s1, set);
-	while (s1[i--] && isset)
-		findset(&isset, &i, s1, set);
-	bounds[1] = ++i;
-	ft_strlcpy(str, s1 + bounds[0], bounds[1] - bounds[0] + 2);
-	return (str);
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		++start;
+	while (s1[end] && ft_strchr(set, s1[end]))
+		--end;
+	trimmed = ft_substr(s1, start, end - start + 1);
+	return (trimmed);
+
 }
