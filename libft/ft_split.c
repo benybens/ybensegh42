@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:22:10 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/02 00:09:15 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:36:53 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,85 @@ int	wordlen(const char *s, char c)
 	int	i;
 
 	i = 0;
-	if (s[i] == 0)
-		return (0);
-	while (s[i] && s[i] != c)
+	while (*s == c)
+		s++;
+	while (s[i] != c)
 		i++;
 	return (i);
 }
 
-void	wordcpy(char *dest, const char *src, char c)
+char	*wordcpy(const char *src, int *cursor, char c)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*dest;
 
 	i = 0;
-	while (src[i] && src[i] != c)
+	j = 0;
+	src += *cursor;
+	dest = calloc(wordlen(src, c) + 1, sizeof(char));
+	while (*src == c)
 	{
-		dest[i] = src[i];
+		src++;
 		i++;
 	}
-	dest[i] = 0;
+	while (*src != c)
+	{
+		dest[j] = *src++;
+		i++;
+		j++;
+	}
+	dest[j] = 0;
+	*cursor += i;
+	return (dest);
 }
 
-void	init_split_var(int *i1, int *i2, int *i3)
+int	count_words(char const *s, char c)
 {
-	*i1 = 0;
-	*i2 = 0;
-	*i3 = 0;
+	int	words;
+	int	flagnw;
+
+	flagnw = 0;
+	words = 0;
+	while (*s)
+	{
+		if (*s == c)
+		{
+			if (flagnw)
+			{
+				words++;
+				flagnw = 0;
+			}
+			s++;
+		}
+		else
+		{
+			flagnw = 1;
+			s++;
+		}
+	}
+	if (flagnw)
+		words++;
+	return (words);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		nc;
-	int		i;
-	int		j;
 	char	**split;
+	int		nbwords;
+	int		i;
+	int		cursor;
 
-	init_split_var(&nc, &i, &j);
-	while (s[i])
+	nbwords = 0;
+	i = 0;
+	cursor = 0;
+	nbwords = count_words(s, c);
+	split = calloc(nbwords + 1, sizeof(char *));
+	while (i < nbwords)
 	{
-		if (s[i] == c && nc == 0)
-			nc += 2;
-		else if (s[i] == c)
-			nc ++;
+		split[i] = wordcpy(s, &cursor, c);
 		i++;
 	}
-	split = calloc(nc + 1, sizeof(char *));
-	i = 0;
-	while (j < nc)
-	{
-		split[j] = calloc (wordlen((s + i) + 1, c), sizeof(char));
-		wordcpy(split[j], s + i, c);
-		i += wordlen((s + i), c) + 1;
-		j++;
-	}
-	split[j] = NULL;
+	split[i] = NULL;
 	return (split);
 }
