@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:10:16 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/09 00:03:08 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:58:22 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,5 @@
 
 int	main(void)
 {
-	char *s;
-	s = ft_strtrim("abcdba", "acb");
-	printf("%s\n", s);
+	printf("%s\n", ft_itoa(-9));
 }
