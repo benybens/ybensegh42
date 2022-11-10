@@ -14,13 +14,26 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*tmp;
+	unsigned int	i;
 
-	if (dest == NULL && src == NULL)
+	if (!dest && !src)
 		return (NULL);
-	tmp = calloc(n + 1, sizeof(char *));
-	ft_memcpy(tmp, src, n);
-	ft_memcpy(dest, tmp, n);
-	free(tmp);
+	if (dest > src)
+	{
+		while (n > 0)
+		{
+			((char *)dest)[n - 1] = ((char *)src)[n - 1];
+			n--;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			((char *)dest)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
 	return (dest);
 }

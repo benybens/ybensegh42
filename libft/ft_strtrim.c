@@ -27,7 +27,7 @@ char	*trim_one_char(char const *s1, int start)
 {
 	char	*trimmed;
 
-	trimmed = calloc(2, sizeof(char));
+	trimmed = ft_calloc(2, sizeof(char));
 	trimmed[0] = s1[start];
 	trimmed[1] = 0;
 	return (trimmed);
@@ -39,8 +39,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	start;
 	size_t	end;
 
-	if (!s1)
-		return (NULL);
+	if (s1[0] == 0)
+		return (ft_strdup(""));
 	if (!set)
 	{
 		trimmed = ft_strdup(s1);
