@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:21:13 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/07 12:56:18 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:18:18 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdio.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 size_t	ft_strlen(const char *s);
 int		ft_isalpha(int c);
@@ -56,5 +62,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-
+t_list	*ft_lstnew(void *content);
+void ft_lstadd_front(t_list **lst, t_list *new);
 #endif
