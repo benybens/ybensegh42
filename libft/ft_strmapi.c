@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:15:44 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/07 12:45:37 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:37:32 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*smod;
 
 	i = 0;
-	smod = calloc(ft_strlen(s) + 1, sizeof(char));
+	smod = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (smod == NULL)
+		return (NULL);
 	while (s[i])
 	{
 		smod[i] = (*f)(i, s[i]);

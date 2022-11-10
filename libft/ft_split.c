@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:22:10 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/07 12:36:53 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:45:45 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	wordlen(const char *s, char c)
 	i = 0;
 	while (*s == c)
 		s++;
-	while (s[i] != c)
+	while (s[i] != c && s[i])
 		i++;
 	return (i);
 }
@@ -33,13 +33,15 @@ char	*wordcpy(const char *src, int *cursor, char c)
 	i = 0;
 	j = 0;
 	src += *cursor;
-	dest = calloc(wordlen(src, c) + 1, sizeof(char));
+	dest = ft_calloc(wordlen(src, c) + 1, sizeof(char));
+	if (dest == NULL)
+		return (NULL);
 	while (*src == c)
 	{
 		src++;
 		i++;
 	}
-	while (*src != c)
+	while (*src != c && *src)
 	{
 		dest[j] = *src++;
 		i++;
@@ -90,7 +92,9 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	cursor = 0;
 	nbwords = count_words(s, c);
-	split = calloc(nbwords + 1, sizeof(char *));
+	split = ft_calloc(nbwords + 1, sizeof(char *));
+	if (split == NULL)
+		return (NULL);
 	while (i < nbwords)
 	{
 		split[i] = wordcpy(s, &cursor, c);
