@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:17:10 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/10 23:51:51 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/12 11:09:08 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (new)
 	{
+		if (!*lst)
+		{
+			*lst = new;
+			return ;
+		}
 		last = ft_lstlast(*lst);
-		if (last)
-			last->next = new;
-		else
-			lst[0] = new;
-		new->next = NULL;
+		last->next = new;
 	}
 }
