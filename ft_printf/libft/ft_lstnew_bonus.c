@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ybensegh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:01:55 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/14 16:15:01 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/11/10 16:02:51 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/11/10 16:16:24 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "libft.h"
 
-int	ft_printf(const char *, ...);
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*newelement;
+
+	newelement = ft_calloc(1, sizeof(t_list));
+	if (newelement == NULL)
+		return (NULL);
+	newelement->content = content;
+	newelement->next = NULL;
+	return (newelement);
+}

@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:01:55 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/14 16:15:01 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/11/10 23:17:10 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/12 11:09:08 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "libft.h"
 
-int	ft_printf(const char *, ...);
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*last;
+
+	if (new)
+	{
+		if (!*lst)
+		{
+			*lst = new;
+			return ;
+		}
+		last = ft_lstlast(*lst);
+		last->next = new;
+	}
+}

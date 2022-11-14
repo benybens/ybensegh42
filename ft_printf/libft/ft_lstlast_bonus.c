@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:01:55 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/14 16:15:01 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/11/10 23:35:57 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/10 23:46:41 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "libft.h"
 
-int	ft_printf(const char *, ...);
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*lstlast;
+
+	lstlast = lst;
+	if (lst)
+	{
+		while (lstlast->next)
+			lstlast = lstlast->next;
+	}
+	return (lstlast);
+}

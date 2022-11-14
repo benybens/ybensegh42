@@ -20,7 +20,7 @@ all:	${NAME}
 	
 test:	${NAME}
 	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
-	./libftprintf.exe
+	./libftprintf
 
 clean: 
 	rm -rf ${OBJS}

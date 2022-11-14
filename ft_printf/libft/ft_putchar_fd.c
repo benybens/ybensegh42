@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:01:55 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/14 16:15:01 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/10/24 14:27:27 by ybensegh          #+#    #+#             */
+/*   Updated: 2022/10/24 14:27:50 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include "libft.h"
+#include "./libft.h"
 
-int	ft_printf(const char *, ...);
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

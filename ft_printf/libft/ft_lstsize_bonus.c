@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:01:55 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/14 16:15:01 by ybensegh         ###   ########.fr       */
+/*   Created: 2022/11/10 22:50:47 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/10 23:06:52 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdarg.h>
 #include "libft.h"
 
-int	ft_printf(const char *, ...);
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*next_element;
+
+	i = 0;
+	next_element = lst;
+	while (next_element != NULL)
+	{
+		next_element = next_element->next;
+		i++;
+	}
+	return (i);
+}
