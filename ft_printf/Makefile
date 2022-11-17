@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = libftprintf.a
 LIBFT = ./libft/libft.a
 SRCSDIR = ./srcs/
@@ -11,15 +11,16 @@ OBJS = ${SRCS:.c=.o}
 	${CC} ${CFLAGS} -c -I ${HEADERDIR} $< -o ${<:.c=.o}
 
 
-${NAME}:	${OBJS} ${LIBFT}
-		ar rcT ${NAME} ${OBJS}
-		ar rcT ${NAME} ${LIBFT}
-		ranlib ${NAME}
-
+${NAME}:	${OBJS}
+			make -C libft
+			cp ${LIBFT} .
+			mv libft.a libftprintf.a
+			ar rcs ${NAME} ${OBJS}
 all:	${NAME}
 	
 test:	${NAME}
 	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
+#	${CC} ${CFLAGS} -o libftprintf main.c ./srcs/ft_printf.c -L/. libftprintf.a
 	./libftprintf
 
 clean: 

@@ -5,3 +5,6 @@ Session.vim
 *.exe
 *.a
 *.swo
+libftprintf
+libftprintf.*
+
