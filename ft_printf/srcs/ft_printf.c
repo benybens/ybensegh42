@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:05:07 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/18 12:24:36 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/18 16:40:58 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	process_str(char *str)
 int	pointer_len(void * pointer)
 {
 	int i;
-	long pointeradd;
+	unsigned long pointeradd;
 
-	pointeradd = (long)pointer;
+	pointeradd = (unsigned long)pointer;
 	i = 0;
 	while(pointeradd > 16)
 	{
@@ -119,13 +119,23 @@ char	ft_itoh(long nbr,int maj)
 char * ft_ptoa(void * pointer)
 {
 	char	*str;
-	long	pointeradd;
+	unsigned long	pointeradd;
 	int	i;
 
 	i = 0;
-	pointeradd = (long)pointer;
+	pointeradd = (unsigned long)pointer;
+	if(!pointeradd)
+	{
+		str = ft_calloc(2, sizeof(char));
+		str[0] = '0';
+		return(str);
+	}
+	if(pointeradd == (unsigned long)LONG_MIN)
+		return(ft_strdup("8000000000000000"));
+	if(pointeradd == ULONG_MAX)
+		return(ft_strdup("ffffffffffffffff"));
 	str = ft_calloc(pointer_len(pointer) + 1,sizeof(pointer));
-	while(pointeradd > 16)
+	while(pointeradd >= 16)
 	{
 		str[i] = ft_itoh(pointeradd % 16,0);
 		i++;
@@ -151,12 +161,12 @@ void	process_pointer(void * pointer, int * nbr_printed)
 	free(str);
 }
 
-int	hex_len(int hex)
+int	hex_len(unsigned int hex)
 {
 	int i;
 
 	i = 0;
-	while(hex > 16)
+	while(hex >= 16)
 	{
 		hex /= 16;
 		i++;
@@ -173,16 +183,25 @@ void	process_hex(unsigned int  hex_value, int * nbr_printed,int maj)
 	int	i;
 
 	i = 0;
-	str = ft_calloc(hex_len(hex_value) + 1,sizeof(char));
-	while(hex_value > 16)
+	if(!hex_value)
 	{
-		str[i] = ft_itoh(hex_value % 16,maj);
-		i++;
-		hex_value /= 16;
+		str = ft_calloc(2, sizeof(char));
+		str[0] = '0';
+		ft_putstr_fd(str, 1);
 	}
-	if (hex_value > 0)
-		str[i] = ft_itoh(hex_value,maj);
+	else
+	{
+		str = ft_calloc(hex_len(hex_value) + 1,sizeof(char));
+		while(hex_value >= 16)
+		{
+			str[i] = ft_itoh(hex_value % 16,maj);
+			i++;
+			hex_value /= 16;
+		}
+		if (hex_value > 0)
+			str[i] = ft_itoh(hex_value,maj);
 	ft_putstr_fd(ft_strrev(str), 1);
+	}
 	*nbr_printed += ft_strlen(str);
 	free(str);
 }
@@ -194,14 +213,22 @@ void	process_hex(unsigned int  hex_value, int * nbr_printed,int maj)
 //
 //description: print char
 //-----------------------------------------------------------------------------
-void	process_char(char c)
+void	process_char(char c, int * nbr_printed)
 {
 	char str[2];
-
-	str[0] = (unsigned char)c;
-	str[1] = 0;
-
-	ft_putstr_fd(str, 1);
+	
+	if (c)
+	{
+		str[0] = (unsigned char)c;
+		str[1] = 0;
+		*nbr_printed = *nbr_printed + 1;
+		ft_putstr_fd(str, 1);
+	}
+	else
+	{
+		write(1,"",1);
+		*nbr_printed = *nbr_printed + 1;
+	}
 }
 //-----------------------------------------------------------------------------
 //function name: format_parse
@@ -238,8 +265,7 @@ int	format_parse(const char *format, int i, va_list *ap, int * nbr_printed)
 	}
 	else if(format[i] == 'c')
 	{
-		process_char(va_arg(*ap,int));
-		*nbr_printed = *nbr_printed + 1;
+		process_char(va_arg(*ap,int),nbr_printed);
 		i++;
 	}
 	else if(format[i] == '%')
@@ -287,6 +313,8 @@ int	ft_printf(const char *format, ...)
 		return (0);
 	va_start(ap, format);
 	str = ft_strdup(format);
+	if (str==NULL)
+		return (-1);
 	len = ft_strlen(str);
 //	countarg(format);
 	while (i < len)

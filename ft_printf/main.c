@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:05:13 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/18 12:17:49 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/18 16:29:24 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 int main()
 {
-	char str[20] = "Hello";
-
-//	printf("str  = %s , is stored at adress %p\n" , str , (void *)15);
-//	ft_printf("str  = %s , is stored at adress %p\n" , str, 15);
-
-	(void) str;
-	printf("d: %d , x : %x\n", -9,-9);
-	ft_printf("d: %d , u : %x\n", -9,-9);
-	printf("d: %d , x : %X\n", 0x5fac,0x5fac);
-	ft_printf("d: %d , u : %X\n", 0x5fac,0x5fac);
-
+printf("1.F'%d]JC,%d!\t!%c2yFG+PSX9`%xe0?%XJ%igN\tudZ{_jL%pko@>>%c{B) 0j\n%%'O`\f\%d\n", -1717153915, 1255615608, -13583628, -835267921, -2120763223, -1288557677, (void *)-5764397641936912249, 306065210, -1996402763);	
+ft_printf("1.F'%d]JC,%d!\t!%c2yFG+PSX9`%xe0?%XJ%igN\tudZ{_jL%pko@>>%c{B) 0j\n%%'O`\f\%d", -1717153915, 1255615608, -13583628, -835267921, -2120763223, -1288557677, (void *)-5764397641936912249, 306065210, -1996402763);	
 }
