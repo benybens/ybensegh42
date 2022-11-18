@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:05:07 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/17 16:53:02 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/18 12:24:36 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ int	process_int(int nbr)
 }
 
 //-----------------------------------------------------------------------------
+//function name: process_int
+//
+//description: convert int in ascii and print
+//-----------------------------------------------------------------------------
+int	process_unsigned(int nbr)
+{
+	char	*itoa_nbr;
+	int	intlen;
+	unsigned int nbru;
+
+	nbru = (unsigned int) nbr;
+	itoa_nbr = ft_itoa_unsigned(nbru);
+	intlen = ft_strlen(itoa_nbr);
+	ft_putstr_fd(itoa_nbr, 1);
+	free(itoa_nbr);
+	return (intlen);
+	
+}
+
+//-----------------------------------------------------------------------------
 //function name: process_str
 //
 //description: print str 
@@ -79,7 +99,17 @@ int	pointer_len(void * pointer)
 	if(pointeradd > 0)
 		i++;
 	return(i);
+}
 
+char	ft_itoh(long nbr,int maj)
+{
+	char hex[16] ="0123456789abcdef";
+	char hexM[16] = "0123456789ABCDEF";
+	
+	if(!maj)
+		return(hex[nbr]);
+	else
+		return(hexM[nbr]);
 }
 //-----------------------------------------------------------------------------
 //function name: process_str
@@ -89,10 +119,21 @@ int	pointer_len(void * pointer)
 char * ft_ptoa(void * pointer)
 {
 	char	*str;
+	long	pointeradd;
+	int	i;
 
+	i = 0;
+	pointeradd = (long)pointer;
 	str = ft_calloc(pointer_len(pointer) + 1,sizeof(pointer));
-	ft_putstr_fd(str, 1);
-	return (str);
+	while(pointeradd > 16)
+	{
+		str[i] = ft_itoh(pointeradd % 16,0);
+		i++;
+		pointeradd /= 16;
+	}
+	if (pointeradd > 0)
+		str[i] = ft_itoh(pointeradd,0);
+	return (ft_strrev(str));
 }
 
 //-----------------------------------------------------------------------------
@@ -100,13 +141,52 @@ char * ft_ptoa(void * pointer)
 //
 //description: print str 
 //-----------------------------------------------------------------------------
-void	process_pointer(void * pointer)
+void	process_pointer(void * pointer, int * nbr_printed)
 {
 	char	*str;
 
 	str = ft_ptoa(pointer);
 	ft_putstr_fd(str, 1);
+	*nbr_printed += ft_strlen(str);
+	free(str);
 }
+
+int	hex_len(int hex)
+{
+	int i;
+
+	i = 0;
+	while(hex > 16)
+	{
+		hex /= 16;
+		i++;
+	}
+	if(hex > 0)
+		i++;
+	return(i);
+}
+//description: print str 
+//-----------------------------------------------------------------------------
+void	process_hex(unsigned int  hex_value, int * nbr_printed,int maj)
+{
+	char	*str;
+	int	i;
+
+	i = 0;
+	str = ft_calloc(hex_len(hex_value) + 1,sizeof(char));
+	while(hex_value > 16)
+	{
+		str[i] = ft_itoh(hex_value % 16,maj);
+		i++;
+		hex_value /= 16;
+	}
+	if (hex_value > 0)
+		str[i] = ft_itoh(hex_value,maj);
+	ft_putstr_fd(ft_strrev(str), 1);
+	*nbr_printed += ft_strlen(str);
+	free(str);
+}
+
 
 
 //-----------------------------------------------------------------------------
@@ -133,9 +213,12 @@ int	format_parse(const char *format, int i, va_list *ap, int * nbr_printed)
 	char *format_str;
 
 	i++;
-	if(format[i] == 'd')
+	if(format[i] == 'd' || format[i] == 'i' || format[i] == 'u')
 	{
-		*nbr_printed += process_int(va_arg(*ap,int));
+		if(format[i] != 'u')
+			*nbr_printed += process_int(va_arg(*ap,int));
+		else
+			*nbr_printed += process_unsigned(va_arg(*ap,int));
 		i++;
 	}
 	else if(format[i] == 's')
@@ -169,7 +252,17 @@ int	format_parse(const char *format, int i, va_list *ap, int * nbr_printed)
 	{
 		ft_putstr_fd("0x",1);
 		*nbr_printed = *nbr_printed + 2;
-		process_pointer(va_arg(*ap,void *));
+		process_pointer(va_arg(*ap,void *),nbr_printed);
+		i++;
+	}
+	else if(format[i] == 'x')
+	{
+		process_hex(va_arg(*ap,int),nbr_printed,0);
+		i++;
+	}
+	else if(format[i] == 'X')
+	{
+		process_hex(va_arg(*ap,int),nbr_printed,1);
 		i++;
 	}
 	return (i);

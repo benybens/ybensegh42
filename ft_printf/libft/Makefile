@@ -9,12 +9,11 @@ SRCS  += ft_memcmp.c ft_calloc.c ft_strdup.c ft_substr.c
 SRCS  += ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c
 SRCS  += ft_strrev.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c
 SRCS  += ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c
+SRCS  += ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c
+SRCS  += ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c
+SRCS  += ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+SRCS  += ft_itoa_unsigned.c
 OBJS = ${SRCS:.c=.o}
-SRCSBNS  = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c
-SRCSBNS  += ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c
-SRCSBNS  += ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
-SRCSBNS  += ${SRCS}
-OBJSBNS = ${SRCSBNS:.c=.o}
 
 .c.o:
 	${CC} ${CFLAGS} -c -I ./ $< -o ${<:.c=.o}
@@ -29,12 +28,8 @@ test:
 	${CC} ${CFLAGS} -o libft_test main.c -L/. libft.a
 	./libft_test
 
-bonus:		${OBJSBNS}
-			ar rc ${NAME} ${OBJSBNS}
-			ranlib ${NAME}
-	
 clean:
-		rm -rf ${OBJS} ${OBJSBNS}
+		rm -rf ${OBJS}
 	
 fclean:		clean
 		rm -rf ${NAME}
