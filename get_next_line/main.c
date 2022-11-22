@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 14:56:27 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/22 15:10:00 by yassinebenseg    ###   ########.fr       */
+/*   Created: 2022/11/22 14:49:10 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/22 15:53:35 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
+#include "get_next_line.h"
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+int main (int argc, char ** argv)
+{
+	int fd;
+	char *buf;
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
+	(void)argv;
+	if(argc!=2)
+		printf("Error in arguments\n");
+	else
+	{
+		fd = open(argv[1], O_RDONLY);
+		while(1)
+		{
+			buf = get_next_line(fd);
+			if(buf)
+				printf("%s", buf);
+			else
+				break;
+		}
+	}
+		
 
-char	*get_next_line(int fd);
+	return (0);
+}
 
-
-#endif

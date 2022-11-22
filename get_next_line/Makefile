@@ -1,26 +1,17 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-NAME = libftprintf.a
-LIBFT = ./libft/libft.a
-SRCSDIR = ./srcs/
-HEADERDIR = ./includes
-SRCS = ./srcs/ft_printf.c ./srcs/ft_process.c ./srcs/ft_process_2.c ./srcs/ft_parse.c ./srcs/ft_convert.c
+CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
+HEADERDIR = ./
+SRCS =  get_next_line.c get_next_line.h get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 
 .c.o:	
 	${CC} ${CFLAGS} -c -I ${HEADERDIR} $< -o ${<:.c=.o}
 
+all:	${OBJS}
+		${CC} ${CFLAGS} -o gnltest main.c get_next_line.c get_next_line_utils.c
 
-${NAME}:	${OBJS}
-			make -C libft
-			cp ${LIBFT} .
-			mv libft.a libftprintf.a
-			ar rcs ${NAME} ${OBJS}
-all:	${NAME}
-	
-test:	${NAME}
-	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
-	./libftprintf
+test:	all
+		./gnltest ./input_text
 
 clean: 
 	rm -rf ${OBJS}
