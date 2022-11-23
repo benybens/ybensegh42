@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
+CFLAGS = -Wall -Wextra -Werror -g 
 HEADERDIR = ./
 SRCS =  get_next_line.c get_next_line.h get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
