@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:01:52 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/25 10:22:55 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/25 17:11:48 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -57,30 +57,56 @@ char *concat(char *readbuf, char *fdbuffer)
 		concat_str[i++] = fdbuffer[j++];
 	concat_str[i] = 0;
 	free(readbuf);
-	free(fdbuffer);
    	return(concat_str);	
+}
+
+int	checknl(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if(str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return(0);
 }
 
 char *get_from_fd(int fd, char *readbuf)
 {
 	char	*fdbuffer;
 	int		rr;
-
-	fdbuffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	rr = read(fd, fdbuffer, BUFFER_SIZE);
-	if(rr == -1)
+	
+	if(!readbuf)
 	{
-		free(fdbuffer);
-		free(readbuf);
-		return(NULL);
+		readbuf = malloc(1 * sizeof(char));
+		readbuf[0] = 0;
 	}
-	if(rr == 0 && !readbuf[0])
+	rr = 1;
+	while(rr)
 	{
+		fdbuffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+		rr = read(fd, fdbuffer, BUFFER_SIZE);
+		fdbuffer[rr] = 0;
+		if(rr == -1)
+		{
+			free(fdbuffer);
+			free(readbuf);
+			return(NULL);
+		}
+		if(rr == 0 && !readbuf[0])
+		{
+			free(fdbuffer);
+			free(readbuf);
+			return(NULL);
+		}
+		readbuf = concat(readbuf,fdbuffer);
 		free(fdbuffer);
-		free(readbuf);
-		return(NULL);
+		if(checknl(readbuf))
+			break;
 	}
-	readbuf = concat(readbuf,fdbuffer);
 	return (readbuf);
 }
 
@@ -109,7 +135,7 @@ char *cleanbuf(char *readbuf, char *line)
 
 	i = 0;
 	linelen = ft_linelen(line);
-	bufcleaned = malloc((BUFFER_SIZE - linelen + 1) * sizeof(char));
+	bufcleaned = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	while(readbuf[linelen +i])
 	{
 		bufcleaned[i] = readbuf[linelen + i];

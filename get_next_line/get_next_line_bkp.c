@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bkp.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:01:20 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/24 15:01:14 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/25 17:09:30 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ char *fill_buffer(int fd, char *readbuf)
 
 	fd_buffer = malloc(BUFFER_SIZE *sizeof(char));
 	rr = read(fd, fd_buffer, BUFFER_SIZE);
+	fd_buffer[rr] = 0;
 	if(rr == -1)
 		return (NULL);
 	if(rr == 0 && !*fd_buffer && !*readbuf)

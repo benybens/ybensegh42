@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:49:10 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/25 10:24:57 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/25 17:00:21 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -28,7 +28,7 @@ int main (int argc, char ** argv)
 			buf = get_next_line(fd);
 			if(buf)
 			{
-				printf("%s", buf);
+				printf("New line --> %s", buf);
 				free(buf);
 			}
 			else
