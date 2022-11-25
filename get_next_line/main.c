@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:49:10 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/23 10:21:52 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/25 10:24:57 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -25,12 +25,11 @@ int main (int argc, char ** argv)
 		fd = open(argv[1], O_RDONLY);
 		while(1)
 		{
-			printf("\nNew Line : \n");
 			buf = get_next_line(fd);
 			if(buf)
 			{
 				printf("%s", buf);
-				buf[0] = 0;
+				free(buf);
 			}
 			else
 				break;

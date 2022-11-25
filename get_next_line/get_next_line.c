@@ -5,125 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 15:01:20 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/23 16:51:58 by yassinebenseg    ###   ########.fr       */
+/*   Created: 2022/11/24 15:01:52 by yassinebenseg     #+#    #+#             */
+/*   Updated: 2022/11/25 10:22:55 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "get_next_line.h"
 
-#include "./get_next_line.h"
-#include <stdio.h>
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 200
+#endif 
 
-#ifndef BUFFER_SIZE 
-# define BUFFER_SIZE 1000
-#endif
-
-int line_len(char *buf)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(buf[i] !='\n' && buf[i])
+	while(str && str[i])
 		i++;
 	return (i);
 }
 
-
-
-char	*extract_line(char *readbuf)
-{
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = malloc((line_len(readbuf) + 1) * sizeof(char));
-	while(readbuf[i] !='\n' && readbuf[i])
-	{
-		str[i] = readbuf[i];
-		i++;
-	}
-	if(readbuf[i] == '\n')
-		str[i++] = '\n';
-	str[i] = 0;
-	return(str);
-}
-
-int	check_nl(char *buf)
+int ft_linelen(char *str)
 {
 	int i;
 
 	i = 0;
-	while (i < BUFFER_SIZE)
-	{
-		if(buf[i] == '\n')
-			return (1);
+	while(str && str[i] && str[i] != '\n')
 		i++;
-	}
-	return(0);
+	return (++i);
 }
 
-int	ft_strlen(char *str)
+char *concat(char *readbuf, char *fdbuffer)
 {
-	int i;
-
-	i = 0;
-	while(str[i])
-		i++;
-	return(i);
-}
-
-void add_buffer(char *readbuf, char *fd_buffer)
-{
+	int readbuf_size;
+	int fdbuffer_size;
 	int i;
 	int j;
-
+	char *concat_str;
+	
 	i = 0;
 	j = 0;
-	while(readbuf[i])
+	readbuf_size = ft_strlen(readbuf);
+	fdbuffer_size = ft_strlen(fdbuffer);
+	concat_str = malloc ((readbuf_size + fdbuffer_size + 1) * sizeof(char));
+	while(readbuf && readbuf[i])
+	{
+		concat_str[i] = readbuf[i];
 		i++;
-	while(fd_buffer[j])
-		readbuf[i++]=fd_buffer[j++];
+	}
+	while(fdbuffer && fdbuffer[j])
+		concat_str[i++] = fdbuffer[j++];
+	concat_str[i] = 0;
+	free(readbuf);
+	free(fdbuffer);
+   	return(concat_str);	
 }
 
-int fill_buffer(int fd, char *readbuf)
+char *get_from_fd(int fd, char *readbuf)
 {
-	char 	*fd_buffer;
+	char	*fdbuffer;
 	int		rr;
 
-	fd_buffer = malloc(BUFFER_SIZE *sizeof(char));
-	rr = read(fd, fd_buffer, BUFFER_SIZE-(ft_strlen(readbuf)));
+	fdbuffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	rr = read(fd, fdbuffer, BUFFER_SIZE);
 	if(rr == -1)
-		return (-1);
-	if(rr == 0)
-		return (0);
-	add_buffer(readbuf,fd_buffer);
-	return(rr);
+	{
+		free(fdbuffer);
+		free(readbuf);
+		return(NULL);
+	}
+	if(rr == 0 && !readbuf[0])
+	{
+		free(fdbuffer);
+		free(readbuf);
+		return(NULL);
+	}
+	readbuf = concat(readbuf,fdbuffer);
+	return (readbuf);
 }
 
-char *update_buffer(char *readbuf, int shift)
+char *extract_line(char *readbuf)
 {
-	char *new_buffer;
+	int i;
+	char *newline;
+
+	i = 0;
+	newline = malloc((ft_linelen(readbuf) + 1) * sizeof(char));
+	while(readbuf[i] && i < ft_linelen(readbuf))
+	{
+		newline[i] = readbuf[i];
+		i++;
+	}
+	newline[i] = 0;
+
+	return(newline);
+}
+
+char *cleanbuf(char *readbuf, char *line)
+{
+	int linelen;
+	char *bufcleaned;
 	int i;
 
 	i = 0;
-	new_buffer = malloc(BUFFER_SIZE * sizeof(char));
-	while(readbuf[shift + i])
+	linelen = ft_linelen(line);
+	bufcleaned = malloc((BUFFER_SIZE - linelen + 1) * sizeof(char));
+	while(readbuf[linelen +i])
 	{
-		new_buffer[i] = readbuf[i+shift];
+		bufcleaned[i] = readbuf[linelen + i];
 		i++;
 	}
+	bufcleaned[i] = 0;
 	free(readbuf);
-	return (new_buffer);
+	return (bufcleaned);
 }
 
-
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
 	static char *readbuf;
-	char		*line;
-	
-	readbuf = malloc(BUFFER_SIZE * sizeof(char));
-	fill_buffer(fd,readbuf);
+	char *line;
+
+	readbuf = get_from_fd(fd, readbuf);
+	if(!readbuf)
+		return(NULL);
 	line = extract_line(readbuf);
-	readbuf = update_buffer(readbuf,ft_strlen(line));
-	return (line);
+	readbuf = cleanbuf(readbuf, line);
+	return(line);
 }

@@ -11,7 +11,7 @@ all:	${OBJS}
 		${CC} ${CFLAGS} -o gnltest main.c get_next_line.c get_next_line_utils.c
 
 test:	all
-		./gnltest ./input_text
+		./gnltest ./test_input/input_text
 
 clean: 
 	rm -rf ${OBJS}
