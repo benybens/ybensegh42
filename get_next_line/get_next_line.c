@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:01:52 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/25 17:11:48 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/28 11:02:21 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -136,7 +136,7 @@ char *cleanbuf(char *readbuf, char *line)
 	i = 0;
 	linelen = ft_linelen(line);
 	bufcleaned = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while(readbuf[linelen +i])
+	while(readbuf[linelen-1 +i] && i< BUFFER_SIZE)
 	{
 		bufcleaned[i] = readbuf[linelen + i];
 		i++;
@@ -150,7 +150,9 @@ char *get_next_line(int fd)
 {
 	static char *readbuf;
 	char *line;
-
+	
+	if(fd < 0 || BUFFER_SIZE == 0 || read(fd,0,0) < 0)
+		return (NULL);
 	readbuf = get_from_fd(fd, readbuf);
 	if(!readbuf)
 		return(NULL);

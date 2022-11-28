@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:49:10 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/25 17:00:21 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/11/28 11:18:06 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -35,8 +35,6 @@ int main (int argc, char ** argv)
 				break;
 		}
 	}
-		
-
 	return (0);
 }
 
