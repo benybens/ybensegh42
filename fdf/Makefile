@@ -13,7 +13,9 @@ OBJS = ${SRCS:.c=.o}
 
 ${NAME}:	${OBJS}
 			make -C ft_printf
+			make -C minilibx_macos
 			cp ./ft_printf/libftprintf.a ${LIBPRINTF}
+			cp ./minilibx_macos/libmlx.a ${LIBMLX}
 			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} main.c -L ./ ${LIBPRINTF} ${LIBMLX}
 
 all:	${NAME}
@@ -25,6 +27,7 @@ clean:
 fclean:	clean
 	rm -rf ${NAME}
 	rm ${LIBPRINTF}
+	rm ${LIBMLX}
 
 re: fclean ${NAME}
 
