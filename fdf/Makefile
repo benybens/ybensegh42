@@ -12,15 +12,19 @@ OBJS = ${SRCS:.c=.o}
 
 
 ${NAME}:	${OBJS}
+			make -C ft_printf
+			cp ./ft_printf/libftprintf.a ${LIBPRINTF}
 			${CC} ${CFLAGS} -o ${NAME} main.c -L ./ ${LIBPRINTF} ${LIBMLX}
 
 all:	${NAME}
 	
 clean: 
-	rm -rf ${OBJS}
+		make -C ft_printf clean
+		rm -rf ${OBJS}
 
 fclean:	clean
 	rm -rf ${NAME}
+	rm ${LIBPRINTF}
 
 re: fclean ${NAME}
 
