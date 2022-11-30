@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 NAME = fdf
 LIBMLX = ./libmlx.a
 LIBPRINTF = ./libftprintf.a
@@ -14,7 +14,7 @@ OBJS = ${SRCS:.c=.o}
 ${NAME}:	${OBJS}
 			make -C ft_printf
 			cp ./ft_printf/libftprintf.a ${LIBPRINTF}
-			${CC} ${CFLAGS} -o ${NAME} main.c -L ./ ${LIBPRINTF} ${LIBMLX}
+			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} main.c -L ./ ${LIBPRINTF} ${LIBMLX}
 
 all:	${NAME}
 	
