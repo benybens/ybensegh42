@@ -6,10 +6,10 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:01:52 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:56 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:19:23 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*concat(char *readbuf, char *fdbuffer)
 {
@@ -68,23 +68,23 @@ char	*get_from_fd(int fd, char *readbuf)
 
 char	*get_next_line(int fd)
 {
-	static char	*readbuf;
+	static char	*readbuf[4096];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 	{
-		free(readbuf);
-		readbuf = NULL;
+		free(readbuf[fd]);
+		readbuf[fd] = NULL;
 		return (NULL);
 	}
-	readbuf = get_from_fd(fd, readbuf);
-	if (!readbuf)
+	readbuf[fd] = get_from_fd(fd, readbuf[fd]);
+	if (!readbuf[fd])
 		return (NULL);
-	line = extract_line(readbuf);
+	line = extract_line(readbuf[fd]);
 	if (!line)
 		return (NULL);
-	readbuf = cleanbuf(readbuf, line);
-	if (!readbuf)
+	readbuf[fd] = cleanbuf(readbuf[fd], line);
+	if (!readbuf[fd])
 		return (NULL);
 	return (line);
 }

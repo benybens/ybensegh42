@@ -6,11 +6,11 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:19:01 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:52 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:09:50 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
