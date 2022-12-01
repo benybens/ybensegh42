@@ -4,7 +4,7 @@ NAME = fdf
 LIBMLX = ./libmlx.a
 LIBPRINTF = ./libftprintf.a
 HEADERDIR = ./
-SRCS = main.c
+SRCS = main.c get_next_line.c get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 
 .c.o:	
