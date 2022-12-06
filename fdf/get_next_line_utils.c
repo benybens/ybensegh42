@@ -6,21 +6,11 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:19:01 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:52 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/12/02 20:44:28 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
 
 int	ft_linelen(char *str)
 {

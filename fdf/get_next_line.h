@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:56:27 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:53 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/12/01 22:52:21 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 200
 # endif 
 
 char	*get_next_line(int fd);
-int		ft_strlen(char *str);
 int		ft_linelen(char *str);
 int		checknl(char *str);
 char	*get_from_fd(int fd, char *readbuf);

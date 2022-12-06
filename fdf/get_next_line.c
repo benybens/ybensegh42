@@ -6,18 +6,19 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:01:52 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:56 by ybensegh         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:39:36 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
 char	*concat(char *readbuf, char *fdbuffer)
 {
-	int		readbuf_size;
-	int		fdbuffer_size;
+	size_t		readbuf_size;
+	size_t		fdbuffer_size;
 	int		i;
 	int		j;
 	char	*concat_str;
+
 
 	i = 0;
 	j = 0;

@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:57:39 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/12/01 11:15:05 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/01 22:51:41 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	deal_key(int keycode, void *param)
 
 void	parse_map(t_list **ptr_line_lst, int fd)
 {
-	int		i;
-	t_list	*next_lst;
 	char	*new_line;
+	int		continue_reading;
 
-	i = 0;
-	while()
+	continue_reading = 1;
+	while(continue_reading)
 	{
-		new_line = get_next_line();
+		new_line = get_next_line(fd);
+		if(new_line == NULL)
+			continue_reading = 0;
 		ft_lstadd_back(ptr_line_lst, (void *)new_line); 
 	}
 }
@@ -55,7 +56,7 @@ int	main(int argc, char **argv)
 	ft_printf("Start fdf\n");
 	fd = open(argv[1],O_RDONLY);
 	line_lst = ft_lstnew(get_next_line(fd));
-	*ptr_line_lst = line_lst;
+	ptr_line_lst = &line_lst;
 	parse_map(ptr_line_lst,fd);
 
 

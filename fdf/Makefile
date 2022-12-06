@@ -16,7 +16,7 @@ ${NAME}:	${OBJS}
 			make -C minilibx_macos
 			cp ./ft_printf/libftprintf.a ${LIBPRINTF}
 			cp ./minilibx_macos/libmlx.a ${LIBMLX}
-			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} main.c -L ./ ${LIBPRINTF} ${LIBMLX}
+			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} ${SRCS} -L ./ ${LIBPRINTF} ${LIBMLX}
 
 all:	${NAME}
 	
