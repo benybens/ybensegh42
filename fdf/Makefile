@@ -1,10 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror 
 NAME = fdf
-LIBMLX = ./libmlx.a
-LIBPRINTF = ./libftprintf.a
-HEADERDIR = ./
-SRCS = main.c get_next_line.c get_next_line_utils.c
+LIBMLX = ./libs/libmlx.a
+LIBFT = ./libs/libft.a
+HEADERDIR = ./includes
+SRCS = main.c
 OBJS = ${SRCS:.c=.o}
 
 .c.o:	
@@ -12,21 +12,21 @@ OBJS = ${SRCS:.c=.o}
 
 
 ${NAME}:	${OBJS}
-			make -C ft_printf
-			make -C minilibx_macos
-			cp ./ft_printf/libftprintf.a ${LIBPRINTF}
-			cp ./minilibx_macos/libmlx.a ${LIBMLX}
-			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} ${SRCS} -L ./ ${LIBPRINTF} ${LIBMLX}
+			make -C ./srcs/libft
+			make -C ./srcs/minilibx_macos
+			cp ./srcs/libft/libft.a ${LIBFT}
+			cp ./srcs/minilibx_macos/libmlx.a ${LIBMLX}
+			${CC} ${CFLAGS} -framework OpenGL -framework AppKit -o ${NAME} ${SRCS} -L ./ ${LIBFT} ${LIBMLX}
 
 all:	${NAME}
 	
 clean: 
-		make -C ft_printf clean
+		make -C ./srcs/libft clean
 		rm -rf ${OBJS}
 
 fclean:	clean
 	rm -rf ${NAME}
-	rm ${LIBPRINTF}
+	rm ${LIBFT}
 	rm ${LIBMLX}
 
 re: fclean ${NAME}

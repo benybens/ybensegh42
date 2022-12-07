@@ -6,13 +6,12 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:57:39 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/12/01 22:51:41 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/06 17:08:33 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "get_next_line.h"
-#include "ft_printf.h"
+#include "./includes/mlx.h"
+#include "./includes/libft.h"
 
 
 int	deal_key(int keycode, void *param)

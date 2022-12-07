@@ -12,7 +12,8 @@ SRCS  += ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c
 SRCS  += ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c
 SRCS  += ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c
 SRCS  += ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
-SRCS  += ft_itoa_unsigned.c
+SRCS  += ft_itoa_unsigned.c ft_printf.c ft_process.c ft_process_2.c
+SRCS  += ft_parse.c ft_convert.c get_next_line.c get_next_line_utils.c 
 OBJS = ${SRCS:.c=.o}
 
 .c.o:

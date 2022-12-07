@@ -6,7 +6,7 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:21:13 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/18 11:06:24 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/07 16:24:14 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,20 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_printf(const char *format, ...);
+int		process_int(int nbr);
+int		process_unsigned(int nbr);
+int		process_str(char *str, int *nbr_printed, int i);
+int		process_pointer(void *pointer, int *nbr_printed, int i);
+int		process_char(char c, int *nbr_printed, int i);
+int		process_hex(unsigned int hex_value, int *nbr_printed, int maj, int j);
+int		print_str(const char *format, int i, int *nbr_printed);
+int		pointer_len(void *pointer);
+char	ft_itoh(long nbr, int maj);
+char	*ft_ptoa(void *pointer);
+int		hex_len(unsigned int hex);
+int		format_parse(const char *format, int i, va_list *ap, int *nbr_printed);
+int		ft_printf(const char *format, ...);
+int		process_percentage(int i, int *nbr_printed); void (*del)(void *);
 #endif

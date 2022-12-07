@@ -6,11 +6,11 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:01:36 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/22 13:55:38 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/07 16:25:07 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 //-----------------------------------------------------------------------------
 //function name: process_int
 //

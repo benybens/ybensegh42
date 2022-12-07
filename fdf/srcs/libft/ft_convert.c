@@ -6,11 +6,11 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:21:04 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/11/22 14:14:49 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/07 16:25:56 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 //-----------------------------------------------------------------------------
 //function name: ft_itoh

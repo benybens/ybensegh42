@@ -6,11 +6,11 @@
 /*   By: ybensegh <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:05:07 by ybensegh          #+#    #+#             */
-/*   Updated: 2022/11/22 13:56:04 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/07 16:24:44 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 //-----------------------------------------------------------------------------
 //function name: ft_printf
