@@ -6,7 +6,7 @@
 /*   By: yassinebenseghir <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:57:39 by yassinebenseg     #+#    #+#             */
-/*   Updated: 2022/12/06 17:08:33 by yassinebenseg    ###   ########.fr       */
+/*   Updated: 2022/12/07 17:10:10 by yassinebenseg    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,31 @@ int	deal_key(int keycode, void *param)
 
 void	parse_map(t_list **ptr_line_lst, int fd)
 {
-	char	*new_line;
+	t_list *line_lst;
 	int		continue_reading;
 
 	continue_reading = 1;
 	while(continue_reading)
 	{
-		new_line = get_next_line(fd);
-		if(new_line == NULL)
+		line_lst = ft_lstnew(get_next_line(fd));
+		if(line_lst->content == NULL)
 			continue_reading = 0;
-		ft_lstadd_back(ptr_line_lst, (void *)new_line); 
+		ft_lstadd_back(ptr_line_lst, (void *)line_lst); 
+	}
+}
+
+void	print_map(t_list **ptr_line_list)
+{	
+	char *line;
+	t_list *next_line;
+
+	next_line = ptr_line_list[0];
+	line = next_line->content;
+	while(line)
+	{
+		ft_printf("%s",line);
+		next_line = next_line->next;
+		line = next_line->content;
 	}
 }
 
@@ -57,9 +72,7 @@ int	main(int argc, char **argv)
 	line_lst = ft_lstnew(get_next_line(fd));
 	ptr_line_lst = &line_lst;
 	parse_map(ptr_line_lst,fd);
-
-
-
+	print_map(ptr_line_lst);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "Fdf window");
 	i = 0;

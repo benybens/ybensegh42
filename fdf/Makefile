@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g 
 NAME = fdf
 LIBMLX = ./libs/libmlx.a
 LIBFT = ./libs/libft.a
