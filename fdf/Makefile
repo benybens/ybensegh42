@@ -28,6 +28,8 @@ fclean:	clean
 	rm -rf ${NAME}
 	rm ${LIBFT}
 	rm ${LIBMLX}
+	make -C ./srcs/libft fclean
+	make -C ./srcs/minilibx_macos clean
 
 re: fclean ${NAME}
 
