@@ -6,7 +6,7 @@
 /*   By: ybensegh <ybensegh@students.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:35:36 by yassinebens       #+#    #+#             */
-/*   Updated: 2023/01/20 16:12:27 by ybensegh         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:42:45 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ typedef struct	s_params {
 	int xangle;
 	int yangle;
 	t_mapsize *mapsize;
-	int **map_array;
+	t_point **map_array;
 	int winwidth;
 	int winheight;
 	t_point canvasorigin;
 }	t_params;
 
 void	    my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	    trace_array(t_data *img, int **map_array, t_mapsize *mapsize, int scale, int xangle, int yangle);
+void	    trace_array(t_data *img, t_point **map_array, t_mapsize *mapsize, int scale);
 void	    clear_image(t_params *mlx_params);
 int         handle_key(int keycode, t_params *param);
 int         handle_mouse(int mousecode,int x,int y, t_params *param);
@@ -61,4 +61,7 @@ void	    parse_map(t_list **ptr_line_lst, int fd);
 t_mapsize   get_mapsize(t_list **lst_points);
 int	        count_points(t_list *lst_points);
 void        trace_line(t_data *img_ptr, t_point a, t_point b, int color);
-int	        **get_map_array(t_list **lst_points);
+t_point     **get_map_array(t_list **lst_points);
+void        project_iso(t_point *point);
+void        project_iso_array(t_point **map_array, t_mapsize *mapsize);
+void        center_trace(t_point **map_array, t_mapsize *mapsize);

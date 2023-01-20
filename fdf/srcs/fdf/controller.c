@@ -6,7 +6,7 @@
 /*   By: ybensegh <ybensegh@students.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:56:22 by ybensegh          #+#    #+#             */
-/*   Updated: 2023/01/20 16:13:51 by ybensegh         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:43:08 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,70 +25,71 @@ int handle_key(int keycode, t_params *param)
 		ft_printf("O Pressed = Scale up");
 		param->scale += 1;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 35)
 	{
 		ft_printf("P Pressed = Scale down");
 		param->scale -= 1;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 123)
 	{
 		ft_printf("left Pressed = x rot min");
 		param->xangle -= 10;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 124)
 	{
 		ft_printf("right Pressed = x rot pos");
 		param->xangle += 10;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 125)
 	{
 		ft_printf("down Pressed = y rot min");
 		param->yangle -= 10;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 126)
 	{
 		ft_printf("left Pressed = x rot min");
 		param->yangle += 10;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 38)
 	{
 		ft_printf("left Pressed = x pan  min");
 		param->canvasorigin.x -= 50;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 37)
 	{
 		ft_printf("right Pressed = x pan pos");
 		param->canvasorigin.x += 50;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 	if(keycode == 40)
 	{
 		ft_printf("down Pressed = y pan min");
 		param->canvasorigin.y += 50;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
+
 	}
 	if(keycode == 34)
 	{
 		ft_printf("left Pressed = y pan pos");
 		param->canvasorigin.y -= 50;
 		clear_image(param);
-		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale,param->xangle,param->yangle);
+		trace_array(param->imagedata,param->map_array,param->mapsize,param->scale);
 	}
 
 

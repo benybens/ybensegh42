@@ -6,7 +6,7 @@
 /*   By: ybensegh <ybensegh@students.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:03:03 by ybensegh          #+#    #+#             */
-/*   Updated: 2023/01/20 16:13:39 by ybensegh         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:45:24 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,40 +97,52 @@ void clear_image(t_params *mlx_params)
 	mlx_put_image_to_window(mlx_params->imagedata, mlx_params->win, mlx_params->imagedata->img,0 ,0);
 }
 
-void	trace_array(t_data *imgdata, int **map_array, t_mapsize *mapsize,int scale,int zangle,int xangle)
+void	trace_array(t_data *imgdata, t_point **map_array, t_mapsize *mapsize,int scale)
 {
 	t_point pa;
 	t_point pb;
 	int y;
 	int x;
-	int color;
-	float toangle;
-
-
-	toangle = 3.14 / 180;
-	(void) xangle;
-	(void) zangle;
-	(void) toangle;
-	
-	x = 0;
-	y = 0;
-	color = 0xFFFFFF;
-
-	while(y < mapsize->height-1)
+    
+    y = 0;
+	while(y < mapsize->height)
 	{
 		x = 0;
-		while(x < mapsize->width-1)
+		while(x < mapsize->width)
 		{
-			pa.x = (x-y) * cos(0.523599);
-			pa.y = -map_array[y][x] + (x-y) * sin(0.523599);
-			pa.x = (x+1-y) * cos(0.523599);
-			pa.y = -map_array[y][x+1] + (x+1-y) * sin(0.523599);
-			trace_line(imgdata, pa, pb, color);
-			pb.x = (x * scale) ;
-			pb.y = (y+1+ map_array[y+1][x])*scale;
-			//trace_line(imgdata, pa, pb, color);
+			pa.x = map_array[y][x].x * scale;
+			pa.y = map_array[y][x].y * scale;
+            if (x < mapsize->width-1)
+            {
+                pb.x = map_array[y][x+1].x * scale;
+			    pb.y = map_array[y][x+1].y * scale;
+                trace_line(imgdata, pa, pb, 0xFFFFFF);
+            }
+            if (y < mapsize->height-1)
+            {
+                pb.x = map_array[y+1][x].x * scale ;
+			    pb.y = map_array[y+1][x].y * scale;
+			    trace_line(imgdata, pa, pb, 0xFFFFFF);
+
+            }
+			
+
 			x++;
 		}	
 		y++;
 	}
+}
+
+void center_trace(t_point **map_array, t_mapsize *mapsize)
+{
+    int y, x;
+
+    for (y = 0; y < mapsize->height; y++)
+    {
+        for (x = 0; x < mapsize->width; x++)
+        {
+            map_array[y][x].x += 15;
+            map_array[y][x].y += 0;
+        }
+    }
 }

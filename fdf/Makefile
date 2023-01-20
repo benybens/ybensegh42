@@ -4,7 +4,7 @@ NAME = fdf
 LIBMLX = ./libs/libmlx.a
 LIBFT = ./libs/libft.a
 HEADERDIR = ./includes
-SRCS = main.c ./srcs/fdf/controller.c ./srcs/fdf/image_utils.c ./srcs/fdf/map_utils.c ./srcs/fdf/points_manager.c
+SRCS = main.c ./srcs/fdf/controller.c ./srcs/fdf/image_utils.c ./srcs/fdf/map_utils.c ./srcs/fdf/points_manager.c ./srcs/fdf/projections.c
 OBJS = ${SRCS:.c=.o}
 
 .c.o:	

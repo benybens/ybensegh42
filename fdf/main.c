@@ -6,7 +6,7 @@
 /*   By: ybensegh <ybensegh@students.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:57:39 by yassinebens       #+#    #+#             */
-/*   Updated: 2023/01/20 16:08:25 by ybensegh         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:42:58 by ybensegh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ int	main(int argc, char **argv)
 	t_list	*line_lst;
 	t_list	**ptr_line_lst;
 	int		fd;
-	//t_point **ptr_points_array;
-//	t_point start
 	t_mapsize	mapsize;
-//	t_point end;
 	t_params mlx_params;
-	int	**map_array;
+	t_point	**map_array;
 
 
 	(void) argv;
@@ -40,6 +37,7 @@ int	main(int argc, char **argv)
 	ptr_line_lst = &line_lst;
 	parse_map(ptr_line_lst,fd);
 	map_array = get_map_array(ptr_line_lst);
+	
 	ft_printf("--------Map array init------\n");
 	mapsize = get_mapsize(ptr_line_lst);
 
@@ -65,13 +63,14 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(win_ptr,handle_mouse,&mlx_params);
 	mlx_key_hook(win_ptr, handle_key, &mlx_params);
 
-	mlx_params.xangle = 180;
-	mlx_params.yangle = 180;
 //==========================
 //
 // TRACE GRID
 	//print_map(map_array,mapsize);
-	trace_array(&imagedata,map_array,&mapsize,mlx_params.scale,mlx_params.xangle,mlx_params.yangle);
+
+	project_iso_array(map_array,&mapsize);
+	center_trace(map_array,&mapsize);
+	trace_array(&imagedata,map_array,&mapsize,mlx_params.scale);
 	//print_map(map_array,mapsize);
 //
 	
